@@ -5,6 +5,7 @@ from .views import ShowTasksView, CompletedTasksView, AddTaskView, EditTaskView,
 
 
 urlpatterns = [
+    path('', ShowTasksView.as_view(), name='show_tasks'),
     path('show_tasks', ShowTasksView.as_view(), name='show_tasks'),
     path('completed_tasks', CompletedTasksView.as_view(), name='completed_tasks'),
     path('add_task', AddTaskView.as_view(), name='add_task'),
