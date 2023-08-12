@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Show Tasks</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.taskTitle }}</td>
+            <td>{{ task.taskDescription }}</td>
+            <td>{{ task.is_completed|yesno:"Complete,Incomplete" }}</td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+                <a class="btn btn-primary" href="{% url 'edit_task' task.id %}">Edit</a>
+                {% if not task.is_completed %}
+                <a class="btn btn-success" href="{% url 'complete_task' task.id %}">Complete</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
